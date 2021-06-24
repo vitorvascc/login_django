@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ri$4^^h3$j%z$r!gugr%x^o0!_%#085z_vgff(^=d9*zc&t0sa
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "crispy_forms",
     # local apps
     "pages.apps.PagesConfig",
 
@@ -63,7 +64,7 @@ ROOT_URLCONF = 'cadastro.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,12 +83,8 @@ WSGI_APPLICATION = 'cadastro.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASES = {}
+
 
 
 # Password validation
@@ -112,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
@@ -142,3 +139,13 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1 
 LOGIN_REDIRECT_URL = "/"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True 
+
+
+#django-crispy-forms
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
